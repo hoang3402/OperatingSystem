@@ -5,7 +5,8 @@ List<int> a = new List<int>()
     9,8,7,6,5,4,3,2,1
 };
 
-OddEvenSort.sort(a);
+//OddEvenSort.sort(a);
+OddEvenSort.sortThread(a);
 
 foreach (int i in a)
 {
