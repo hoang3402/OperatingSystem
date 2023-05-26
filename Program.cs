@@ -22,15 +22,28 @@ List<Process> processes = new List<Process>()
 //Console.WriteLine($"Average Waiting Time: {temp}");
 
 
+//Console.WriteLine("=====================================");
+
+//var SJF = new SJFScheduler();
+
+//SJF.AddProcesses(processes);
+
+//SJF.Run();
+
+//var temp = SJF.GetAVGTurnAroundTime();
+//Console.WriteLine($"Average Turn Around Time: {temp}");
+//temp = SJF.GetAVGWaitingTime();
+//Console.WriteLine($"Average Waiting Time: {temp}");
+
 Console.WriteLine("=====================================");
 
-var SJF = new SJFScheduler();
+var RR = new RRScheduler(2);
 
-SJF.AddProcesses(processes);
+RR.AddProcesses(processes);
 
-SJF.Run();
+RR.Run();
 
-var temp = SJF.GetAVGTurnAroundTime();
+var temp = RR.GetAVGTurnAroundTime();
 Console.WriteLine($"Average Turn Around Time: {temp}");
-temp = SJF.GetAVGWaitingTime();
+temp = RR.GetAVGWaitingTime();
 Console.WriteLine($"Average Waiting Time: {temp}");
