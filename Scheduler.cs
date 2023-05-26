@@ -28,6 +28,7 @@
 
         public float GetAVGTurnAroundTime()
         {
+            Console.WriteLine("TAT = " + this.turnAroundTime);
             return this.turnAroundTime / (float)this.numberProcess;
         }
 
