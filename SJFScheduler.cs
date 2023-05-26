@@ -20,6 +20,7 @@
             while (this.processes.Count > 0)
             {
                 Process process = GetNext();
+                Console.WriteLine($"Current time is {timer} - {process.Id} running");
                 process.RemainingTime--;
                 if (process.RemainingTime == 0)
                 {

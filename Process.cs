@@ -24,6 +24,8 @@
                 this.finishTime = value;
                 this.turnAroundTime = this.finishTime - this.arrivalTime;
                 this.waitingTime = this.turnAroundTime - this.burstTime;
+                Console.WriteLine($"Turn Around Time = {this.turnAroundTime} of {this.id}");
+                Console.WriteLine($"Waiting Time = {this.waitingTime} of {this.id}");
             }
         }
         public int TurnAroundTime { get { return this.turnAroundTime; } }
