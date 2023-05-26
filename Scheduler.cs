@@ -18,6 +18,7 @@
 
         public void AddProcesses(List<Process> processes)
         {
+            processes.Sort((x, y) => x.ArrivalTime.CompareTo(y.ArrivalTime));
             this.processes.AddRange(processes);
             this.numberProcess += processes.Count;
         }
