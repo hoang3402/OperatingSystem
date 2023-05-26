@@ -23,7 +23,7 @@
                 process.RemainingTime--;
                 if (process.RemainingTime == 0)
                 {
-                    bool check = this.processes.Remove(process);
+                    this.processes.Remove(process);
                     process.FinishTime = timer + 1;
                     this.turnAroundTime += process.TurnAroundTime;
                     this.waitingTime += process.WaitingTime;
