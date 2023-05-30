@@ -2,15 +2,13 @@
 {
     private int iterations;
     private string message;
-    private int delay;
     static object _lock = new object();
     static private int _count = 0;
 
-    public Program(int iterations, string message, int delay)
+    public Program(int iterations, string message)
     {
         this.iterations = iterations;
         this.message = message;
-        this.delay = delay;
     }
     public void Start(bool plus)
     {
@@ -41,7 +39,6 @@
                 Monitor.Enter(_lock);
                 _count++;
                 Console.WriteLine("{0}: + Count = {1}", DateTime.Now.ToString("HH:mm:ss.ffff"), _count);
-                Thread.Sleep(delay);
                 Monitor.Pulse(_lock);
                 Monitor.Wait(_lock);
             }
@@ -62,7 +59,6 @@
                 Monitor.Enter(_lock);
                 _count--;
                 Console.WriteLine("{0}: - Count = {1}", DateTime.Now.ToString("HH:mm:ss.ffff"), _count);
-                Thread.Sleep(delay);
                 Monitor.Pulse(_lock);
                 Monitor.Wait(_lock);
             }
@@ -75,8 +71,8 @@
     }
     static void Main(string[] args)
     {
-        Program p1 = new Program(2500, "", 0);
-        Program p2 = new Program(2500, "", 0);
+        Program p1 = new Program(2500, "");
+        Program p2 = new Program(2500, "");
         p1.Start(true);
         p2.Start(false);
     }
