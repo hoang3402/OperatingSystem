@@ -23,18 +23,37 @@ namespace OperatingSystem
             string s = "Chao ban den voi Server";
             streamWriter.WriteLine(s);
             streamWriter.Flush();
-            while (true)
+            Thread send = new Thread(() =>
             {
-                s = streamReader.ReadLine()!;
-                Console.WriteLine("Client gui len:{0}", s);
-                //Neu chuoi nhan duoc la Thoat thi thoat
-                if (s.ToUpper().Equals("THOAT")) break;
-                //Gui tra lai cho client chuoi s
-                s = s.ToUpper();
-                streamWriter.WriteLine(s);
-                streamWriter.Flush();
+                while (true)
+                {
+                    s = Console.ReadLine()!;
+                    streamWriter.WriteLine(s);
+                    streamWriter.Flush();
+                    if (s.ToUpper().Equals("THOAT")) break;
+                }
+            });
+            Thread receive = new Thread(() =>
+            {
+                try
+                {
+                    while (true)
+                    {
+                        s = streamReader.ReadLine()!;
+                        Console.WriteLine("Client gui:{0}", s);
+                        if (s.ToUpper().Equals("THOAT")) break;
+                    }
+                }
+                catch (IOException)
+                {
+                    // Catch the IOException to handle the case when the client disconnects
+                    Console.WriteLine("Client disconnected.");
+                }
+            });
 
-            }
+            send.Start();
+            receive.Start();
+            send.Join(); // Wait for the send thread to finish
             client?.Shutdown(SocketShutdown.Both);
             client?.Close();
             _server.Close();
